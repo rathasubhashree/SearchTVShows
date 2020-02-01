@@ -1,0 +1,36 @@
+included:
+  - DisplayTVShows
+disabled_rules:
+  - identifier_name
+  - type_name
+  - weak_delegate
+  - function_body_length
+opt_in_rules:
+  - empty_count
+analyzer_rules:
+  - unused_declaration
+  - unused_import
+excluded:
+  - Carthage
+  - Pods
+force_cast:
+  severity: warning
+force_try:
+  severity: warning
+line_length: 100
+type_body_length:
+  - 300 # warning
+  - 400 # error
+file_length:
+  warning: 500
+  error: 1200
+comma:
+  severity: error
+colon:
+  severity: error
+whitespace:
+  severity: error
+trailing_whitespace:
+  ignores_empty_lines: true
+  ignores_comments: true
+reporter: "xcode"

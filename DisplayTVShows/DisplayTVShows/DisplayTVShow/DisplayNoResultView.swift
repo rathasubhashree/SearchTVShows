@@ -50,4 +50,3 @@ class DisplayNoResultView: UIView {
         }
     }
 }
-

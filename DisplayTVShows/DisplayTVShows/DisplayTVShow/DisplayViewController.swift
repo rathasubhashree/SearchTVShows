@@ -36,7 +36,9 @@ class DisplayViewController: UITableViewController {
         searchBar()
         service.delegate = self
         self.delegate = service
-        tableView.register(DisplayTVShowDetailsTableViewCell.self, forCellReuseIdentifier: DisplayTVShowDetailsTableViewCell.cellReuseIdentifier)
+        tableView.register(
+            DisplayTVShowDetailsTableViewCell.self,
+            forCellReuseIdentifier: DisplayTVShowDetailsTableViewCell.cellReuseIdentifier)
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
         tableView.backgroundColor = Colors.white.value
@@ -88,7 +90,9 @@ class DisplayViewController: UITableViewController {
         return entries.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(
+        _ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: DisplayTVShowDetailsTableViewCell.cellReuseIdentifier,
             for: indexPath) as? DisplayTVShowDetailsTableViewCell else {
@@ -100,7 +104,9 @@ class DisplayViewController: UITableViewController {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(
+        _ tableView: UITableView,
+        viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         headerView.backgroundColor = UIColor.clear
         return headerView
@@ -115,7 +121,9 @@ class DisplayViewController: UITableViewController {
         navigationController?.pushViewController(controller, animated: true)
     }
 
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(
+        _ tableView: UITableView,
+        heightForHeaderInSection section: Int) -> CGFloat {
         return 20
     }
 }
@@ -161,7 +169,10 @@ extension DisplayViewController: UISearchBarDelegate {
         }
     }
 
-    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+    func searchBar(
+        _ searchBar: UISearchBar,
+        shouldChangeTextIn range: NSRange,
+        replacementText text: String) -> Bool {
         if searchBar.searchTextField.isFirstResponder {
             let validString = CharacterSet(
                 charactersIn: "!@#$%^&*()_+{}[]|\"<>,.~`/:;?-=\\¥'£•¢")
@@ -195,4 +206,3 @@ extension String {
         return self.components(separatedBy: CharacterSet.whitespaces).joined()
     }
 }
-

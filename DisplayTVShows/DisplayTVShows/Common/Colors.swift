@@ -7,20 +7,18 @@ enum Colors {
     case navBarTintColor
     case black
     var value: UIColor {
-        get {
-            switch self {
-            case .tableViewBackgroundColor:
-                return UIColor.init(red: 62, green: 133, blue: 167)
-            case .white:
-                return UIColor.white
-            case .searchBorder:
-                return UIColor.purple
-            case .navBarTintColor:
-                return UIColor(
-                    red: 33/255, green: 28/255, blue: 88/255, alpha: 1)
-            case .black:
-                return UIColor.black
-            }
+        switch self {
+        case .tableViewBackgroundColor:
+            return UIColor.init(red: 62, green: 133, blue: 167)
+        case .white:
+            return UIColor.white
+        case .searchBorder:
+            return UIColor.purple
+        case .navBarTintColor:
+            return UIColor(
+                red: 33/255, green: 28/255, blue: 88/255, alpha: 1)
+        case .black:
+            return UIColor.black
         }
     }
 }

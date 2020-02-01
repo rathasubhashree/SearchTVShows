@@ -14,4 +14,3 @@ protocol DisplayViewDelegate: class {
 protocol DisplayServiceDelegate: class {
     func getTVShowList(searchString: String)
 }
-

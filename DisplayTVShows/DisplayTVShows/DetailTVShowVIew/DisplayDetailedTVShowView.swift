@@ -23,9 +23,6 @@ private struct Strings {
 
     static let officialSite = NSLocalizedString(
         "Official Site", comment: "Text for official site Button title")
-
-
-
 }
 
 class DisplayDetailedTVShowView: UIView {
@@ -90,7 +87,6 @@ class DisplayDetailedTVShowView: UIView {
         } else {
             genresLabel.isHidden = true
         }
-
 
         if let schedule = showDetails.show.schedule,
             let time = schedule.time,
@@ -199,7 +195,9 @@ class DisplayDetailedTVShowView: UIView {
         tvShowOfficialSiteButton.titleLabel?.font = Fonts.title
         tvShowOfficialSiteButton.backgroundColor = Colors.tableViewBackgroundColor.value
         tvShowOfficialSiteButton.layer.cornerRadius = 10
-        tvShowOfficialSiteButton.addTarget(self, action: #selector(officialSiteButtonTapped), for: .touchUpInside)
+        tvShowOfficialSiteButton.addTarget(
+            self, action: #selector(officialSiteButtonTapped),
+            for: .touchUpInside)
     }
 
     @objc func officialSiteButtonTapped() {
@@ -252,7 +250,8 @@ class DisplayDetailedTVShowView: UIView {
 extension String {
 
     func htmlAttributedString() -> NSMutableAttributedString? {
-        guard let data = self.data(using: String.Encoding.utf16, allowLossyConversion: false) else { return nil }
+        guard let data = self.data(
+            using: String.Encoding.utf16, allowLossyConversion: false) else { return nil }
         guard let html = try? NSMutableAttributedString(
             data: data,
             options: [.documentType: NSAttributedString.DocumentType.html],

@@ -390,8 +390,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "
-";
+			shellScript = "$PODS_ROOT/SwiftLint/swiftlint lint --config $PROJECT_DIR/DisplayTVShows/Common/.swiftlint.yml\n";
 		};
 		C6190E618C41C8AB6F91053D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
