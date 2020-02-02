@@ -1,4 +1,4 @@
-# SearchTVShows
+# DisplayTVShows
 
 This app allows a user to search for TV shows and displays list of tv shows and details about the selected tv show.
 
