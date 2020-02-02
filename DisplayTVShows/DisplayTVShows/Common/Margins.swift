@@ -5,4 +5,5 @@ enum Margins: CGFloat {
     case x2 = 16
     case x3 = 24
     case x4 = 32
+    case x5 = 40
 }

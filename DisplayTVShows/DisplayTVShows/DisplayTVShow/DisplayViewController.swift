@@ -1,5 +1,6 @@
 import UIKit
 import SVProgressHUD
+import Alamofire
 
 private struct Strings {
     static let placeholder = NSLocalizedString(
@@ -27,6 +28,12 @@ class DisplayViewController: UITableViewController {
     var searchedText: String?
 
     private let searchNoResultView = DisplayNoResultView()
+
+    private let requestTimeout = 0.25
+
+    var isConnectedToInternet: Bool {
+        return NetworkReachabilityManager()?.isReachable ?? true
+    }
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -180,7 +187,8 @@ extension DisplayViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         NSObject.cancelPreviousPerformRequests(
             withTarget: self, selector: #selector(self.reload(_:)), object: searchBar)
-        perform(#selector(self.reload(_:)), with: searchBar, afterDelay: 0.75)
+        perform(#selector(
+            self.reload(_:)), with: searchBar, afterDelay: requestTimeout)
     }
 
     @objc func reload(_ searchBar: UISearchBar) {
@@ -188,6 +196,10 @@ extension DisplayViewController: UISearchBarDelegate {
             searchedString != "" {
             SVProgressHUD.show()
             searchedText = searchedString
+            guard isConnectedToInternet  else {
+                displayError(errorMessage: NetworkResponse.connectInternet.rawValue)
+                return
+            }
             delegate?.getTVShowList(searchString: searchedString.removingWhitespaces)
         }
     }

@@ -108,10 +108,15 @@ class DisplayDetailedTVShowView: UIView {
         if let schedule = schedule,
             let time = schedule.time,
             let days = schedule.days?.joined(separator: ", "),
-            !time.isEmpty || !days.isEmpty {
-            scheduleLabel.attributedText = setupAttributedString(
+            !time.isEmpty && !days.isEmpty {
+            let prefixString = setupAttributedString(
                 prefixStringValue: Strings.schedule,
-                suffixStringValue: days + " " + time)
+                suffixStringValue: days)
+            let suffixString = setupAttributedString(
+                prefixStringValue: " at ",
+                suffixStringValue: time)
+            prefixString.append(suffixString)
+            scheduleLabel.attributedText = prefixString
         } else {
             scheduleLabel.isHidden = true
         }
