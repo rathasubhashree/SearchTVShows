@@ -145,8 +145,9 @@ extension DisplayViewController: DisplayViewDelegate {
     }
 
     func displayError(errorMessage: String) {
+        self.deactivateSearch()
         DispatchQueue.main.async {
-            self.tableView.reloadData()
+            SVProgressHUD.dismiss()
             let alertController = UIAlertController(
                 title: errorMessage, message: "", preferredStyle: .alert)
             let cancelAction = UIAlertAction(
@@ -154,8 +155,6 @@ extension DisplayViewController: DisplayViewDelegate {
             alertController.addAction(cancelAction)
             self.present(alertController, animated: true)
             self.showNoResultFound()
-            self.deactivateSearch()
-            SVProgressHUD.dismiss()
         }
     }
 
@@ -181,6 +180,13 @@ extension DisplayViewController: UISearchBarDelegate {
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        NSObject.cancelPreviousPerformRequests(
+            withTarget: self, selector: #selector(self.reload(_:)), object: searchBar)
+        perform(#selector(self.reload(_:)), with: searchBar, afterDelay: 0.75)
+
+    }
+
+    @objc func reload(_ searchBar: UISearchBar) {
         if let searchedString = searchBar.text ,
             searchedString != "" {
             SVProgressHUD.show()
