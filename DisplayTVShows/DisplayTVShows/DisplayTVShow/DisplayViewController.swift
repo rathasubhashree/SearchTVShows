@@ -103,6 +103,7 @@ class DisplayViewController: UITableViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.keyboardType = .asciiCapable
         searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.returnKeyType = .default
     }
 
     override func tableView(
@@ -173,17 +174,13 @@ extension DisplayViewController: DisplayViewDelegate {
 extension DisplayViewController: UISearchBarDelegate {
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if let searchedString = searchBar.text {
-            SVProgressHUD.show()
-            delegate?.getTVShowList(searchString: searchedString.removingWhitespaces)
-        }
+        searchBar.endEditing(true)
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         NSObject.cancelPreviousPerformRequests(
             withTarget: self, selector: #selector(self.reload(_:)), object: searchBar)
         perform(#selector(self.reload(_:)), with: searchBar, afterDelay: 0.75)
-
     }
 
     @objc func reload(_ searchBar: UISearchBar) {
@@ -199,7 +196,7 @@ extension DisplayViewController: UISearchBarDelegate {
         _ searchBar: UISearchBar,
         shouldChangeTextIn range: NSRange,
         replacementText text: String) -> Bool {
-        if searchBar.searchTextField.isFirstResponder {
+        if searchBar.isFirstResponder {
             let validString = CharacterSet(
                 charactersIn: "!@#$%^&*()_+{}[]|\"<>,.~`/:;?-=\\¥'£•¢")
             if text.rangeOfCharacter(from: validString) != nil {

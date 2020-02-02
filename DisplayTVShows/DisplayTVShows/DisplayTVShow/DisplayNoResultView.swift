@@ -46,9 +46,9 @@ class DisplayNoResultView: UIView {
         }
 
         descriptionLabel.snp.makeConstraints { (make) in
-            make.top.lessThanOrEqualTo(searchImageView.snp.bottom).offset(
-                Margins.x2.rawValue)
+            make.top.equalTo(searchImageView.snp.bottom)
             make.leading.trailing.equalToSuperview().inset(Margins.x2.rawValue)
+            make.centerX.equalToSuperview()
             make.bottom.lessThanOrEqualToSuperview()
         }
     }
