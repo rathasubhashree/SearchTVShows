@@ -22,10 +22,14 @@
 		850DBEC623E3379400D8F221 /* DisplayDetailedTVShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850DBEC523E3379400D8F221 /* DisplayDetailedTVShowViewController.swift */; };
 		850DBEC823E337B000D8F221 /* DisplayDetailedTVShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850DBEC723E337B000D8F221 /* DisplayDetailedTVShowView.swift */; };
 		85136F4623E5B70F00E93CD3 /* DisplayNoResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85136F4523E5B70F00E93CD3 /* DisplayNoResultView.swift */; };
+		8517E76123E732CC00999F57 /* Margins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8517E76023E732CC00999F57 /* Margins.swift */; };
+		8517E76323E7349600999F57 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8517E76223E7349600999F57 /* StringTests.swift */; };
 		855B33DF23E605E70009E4E3 /* DisplayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855B33DE23E605E70009E4E3 /* DisplayService.swift */; };
 		855B33E123E605FD0009E4E3 /* HTTPHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855B33E023E605FD0009E4E3 /* HTTPHandler.swift */; };
+		855C669F23E7211C0011E882 /* Strings+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C669E23E7211C0011E882 /* Strings+Extension.swift */; };
+		855C66A223E7220A0011E882 /* HTTPMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C66A123E7220A0011E882 /* HTTPMethods.swift */; };
+		855C66A423E722430011E882 /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C66A323E722430011E882 /* NetworkResponse.swift */; };
 		85B83B1F23E5A26D00C2892A /* 10201-background-full-screen-night.json in Resources */ = {isa = PBXBuildFile; fileRef = 85B83B1E23E5A26D00C2892A /* 10201-background-full-screen-night.json */; };
-		85C7A13123E218270057F189 /* DisplayData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C7A13023E218270057F189 /* DisplayData.swift */; };
 		85C7A13423E218EB0057F189 /* DisplayTVShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C7A13323E218EB0057F189 /* DisplayTVShow.swift */; };
 		85C7A13623E2192C0057F189 /* ShowDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C7A13523E2192C0057F189 /* ShowDetails.swift */; };
 		85C7A13823E21A050057F189 /* ScheduleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C7A13723E21A050057F189 /* ScheduleData.swift */; };
@@ -49,7 +53,7 @@
 /* Begin PBXFileReference section */
 		2732F512D5DB53A55ACF643B /* Pods_DisplayTVShows.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DisplayTVShows.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		29DACEA641EC77DD6B676D2A /* Pods-DisplayTVShows.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DisplayTVShows.release.xcconfig"; path = "Target Support Files/Pods-DisplayTVShows/Pods-DisplayTVShows.release.xcconfig"; sourceTree = "<group>"; };
-		85071B1023E1B3670086B3D5 /* eBerry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eBerry.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		85071B1023E1B3670086B3D5 /* DisplayTVShows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DisplayTVShows.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85071B1323E1B3670086B3D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85071B1523E1B3670086B3D5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		85071B1723E1B3670086B3D5 /* DisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayViewController.swift; sourceTree = "<group>"; };
@@ -68,10 +72,14 @@
 		850DBEC523E3379400D8F221 /* DisplayDetailedTVShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDetailedTVShowViewController.swift; sourceTree = "<group>"; };
 		850DBEC723E337B000D8F221 /* DisplayDetailedTVShowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDetailedTVShowView.swift; sourceTree = "<group>"; };
 		85136F4523E5B70F00E93CD3 /* DisplayNoResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayNoResultView.swift; sourceTree = "<group>"; };
+		8517E76023E732CC00999F57 /* Margins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Margins.swift; sourceTree = "<group>"; };
+		8517E76223E7349600999F57 /* StringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
 		855B33DE23E605E70009E4E3 /* DisplayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayService.swift; sourceTree = "<group>"; };
 		855B33E023E605FD0009E4E3 /* HTTPHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHandler.swift; sourceTree = "<group>"; };
+		855C669E23E7211C0011E882 /* Strings+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+Extension.swift"; sourceTree = "<group>"; };
+		855C66A123E7220A0011E882 /* HTTPMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethods.swift; sourceTree = "<group>"; };
+		855C66A323E722430011E882 /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
 		85B83B1E23E5A26D00C2892A /* 10201-background-full-screen-night.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "10201-background-full-screen-night.json"; sourceTree = "<group>"; };
-		85C7A13023E218270057F189 /* DisplayData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayData.swift; sourceTree = "<group>"; };
 		85C7A13323E218EB0057F189 /* DisplayTVShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayTVShow.swift; sourceTree = "<group>"; };
 		85C7A13523E2192C0057F189 /* ShowDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetails.swift; sourceTree = "<group>"; };
 		85C7A13723E21A050057F189 /* ScheduleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleData.swift; sourceTree = "<group>"; };
@@ -118,7 +126,7 @@
 		85071B1123E1B3670086B3D5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				85071B1023E1B3670086B3D5 /* eBerry.app */,
+				85071B1023E1B3670086B3D5 /* DisplayTVShows.app */,
 				85071B2623E1B3690086B3D5 /* DisplayTVShowsTests.xctest */,
 			);
 			name = Products;
@@ -146,6 +154,7 @@
 			children = (
 				85071B2A23E1B3690086B3D5 /* DisplayTVShowsTests.swift */,
 				85071B2C23E1B36A0086B3D5 /* Info.plist */,
+				8517E76223E7349600999F57 /* StringTests.swift */,
 			);
 			path = DisplayTVShowsTests;
 			sourceTree = "<group>";
@@ -173,10 +182,11 @@
 		85071B4123E1CF0C0086B3D5 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				855C66A023E721DD0011E882 /* Resources */,
 				85071B3923E1CC500086B3D5 /* Constants.swift */,
-				85071B4223E1CF320086B3D5 /* .swiftlint.yml */,
-				85B83B1E23E5A26D00C2892A /* 10201-background-full-screen-night.json */,
 				85DA32CD23E5FB9F00C02FE1 /* Colors.swift */,
+				855C669E23E7211C0011E882 /* Strings+Extension.swift */,
+				8517E76023E732CC00999F57 /* Margins.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -196,14 +206,24 @@
 				85C7A13223E2182E0057F189 /* Entities */,
 				855B33DE23E605E70009E4E3 /* DisplayService.swift */,
 				855B33E023E605FD0009E4E3 /* HTTPHandler.swift */,
+				855C66A323E722430011E882 /* NetworkResponse.swift */,
+				855C66A123E7220A0011E882 /* HTTPMethods.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		855C66A023E721DD0011E882 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				85071B4223E1CF320086B3D5 /* .swiftlint.yml */,
+				85B83B1E23E5A26D00C2892A /* 10201-background-full-screen-night.json */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		85C7A13223E2182E0057F189 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				85C7A13023E218270057F189 /* DisplayData.swift */,
 				85C7A13323E218EB0057F189 /* DisplayTVShow.swift */,
 				85C7A13523E2192C0057F189 /* ShowDetails.swift */,
 				85C7A13723E21A050057F189 /* ScheduleData.swift */,
@@ -253,7 +273,7 @@
 			);
 			name = DisplayTVShows;
 			productName = DisplayTVShows;
-			productReference = 85071B1023E1B3670086B3D5 /* eBerry.app */;
+			productReference = 85071B1023E1B3670086B3D5 /* DisplayTVShows.app */;
 			productType = "com.apple.product-type.application";
 		};
 		85071B2523E1B3690086B3D5 /* DisplayTVShowsTests */ = {
@@ -390,7 +410,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$PODS_ROOT/SwiftLint/swiftlint lint --config $PROJECT_DIR/DisplayTVShows/Common/.swiftlint.yml\n";
+			shellScript = "$PODS_ROOT/SwiftLint/swiftlint lint --config $PROJECT_DIR/DisplayTVShows/Common/Resources/.swiftlint.yml\n";
 		};
 		C6190E618C41C8AB6F91053D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -421,9 +441,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				855C669F23E7211C0011E882 /* Strings+Extension.swift in Sources */,
 				85071B1823E1B3670086B3D5 /* DisplayViewController.swift in Sources */,
 				85DA32CE23E5FB9F00C02FE1 /* Colors.swift in Sources */,
-				85C7A13123E218270057F189 /* DisplayData.swift in Sources */,
 				850DBEC623E3379400D8F221 /* DisplayDetailedTVShowViewController.swift in Sources */,
 				855B33DF23E605E70009E4E3 /* DisplayService.swift in Sources */,
 				85071B3C23E1CDF50086B3D5 /* SearchViewController.swift in Sources */,
@@ -432,6 +452,7 @@
 				85C7A13823E21A050057F189 /* ScheduleData.swift in Sources */,
 				85071B1423E1B3670086B3D5 /* AppDelegate.swift in Sources */,
 				855B33E123E605FD0009E4E3 /* HTTPHandler.swift in Sources */,
+				8517E76123E732CC00999F57 /* Margins.swift in Sources */,
 				85C7A13423E218EB0057F189 /* DisplayTVShow.swift in Sources */,
 				85136F4623E5B70F00E93CD3 /* DisplayNoResultView.swift in Sources */,
 				85071B4023E1CE690086B3D5 /* SearchView.swift in Sources */,
@@ -440,7 +461,9 @@
 				850DBEC323E2C87D00D8F221 /* DisplayTVShowDetailsTableViewCell.swift in Sources */,
 				85C7A13623E2192C0057F189 /* ShowDetails.swift in Sources */,
 				85071B3A23E1CC500086B3D5 /* Constants.swift in Sources */,
+				855C66A423E722430011E882 /* NetworkResponse.swift in Sources */,
 				85C7A13C23E21B2D0057F189 /* ImageData.swift in Sources */,
+				855C66A223E7220A0011E882 /* HTTPMethods.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +471,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8517E76323E7349600999F57 /* StringTests.swift in Sources */,
 				85071B2B23E1B3690086B3D5 /* DisplayTVShowsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -602,7 +626,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.DisplayTVShows.DisplayTVShows;
-				PRODUCT_NAME = eBerry;
+				PRODUCT_NAME = DisplayTVShows;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -622,7 +646,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.DisplayTVShows.DisplayTVShows;
-				PRODUCT_NAME = eBerry;
+				PRODUCT_NAME = DisplayTVShows;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

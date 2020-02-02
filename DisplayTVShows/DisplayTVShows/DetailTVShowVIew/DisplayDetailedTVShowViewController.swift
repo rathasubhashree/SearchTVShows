@@ -1,5 +1,8 @@
 import UIKit
 
+/*
+ DisplayDetailedTVShowViewController displays details for selected tv show
+ */
 class DisplayDetailedTVShowViewController: UIViewController {
 
     private let detailView = DisplayDetailedTVShowView()
@@ -28,6 +31,6 @@ class DisplayDetailedTVShowViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = Colors.white.value
         navigationController?.navigationBar.tintColor = Colors.navBarTintColor.value
         navigationController?.isNavigationBarHidden = false
-        detailView.update(showDetails: showDetails)
+        detailView.update(showDetails: showDetails.show)
     }
 }

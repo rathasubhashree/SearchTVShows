@@ -6,8 +6,16 @@ private struct Strings {
     static let title = NSLocalizedString(
         "Search TV Shows",
         comment: "Text for navigation title")
+
+    static let back = NSLocalizedString(
+        "Back",
+        comment: "Text for navigation back button title")
+
 }
 
+/*
+ SearchViewController displays an animation with a search textfield.
+ */
 class SearchViewController: UIViewController {
     private let searchView = SearchView()
     let animationView = AnimationView(name: "10201-background-full-screen-night")
@@ -27,6 +35,21 @@ class SearchViewController: UIViewController {
         setupConstraints()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        startAnimation()
+
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        animationView.stop()
+    }
+
+    @objc private func startAnimation() {
+        self.animationView.play()
+    }
+
     private func setupView() {
         view.addSubview(animationView)
         animationView.loopMode = .loop
@@ -41,7 +64,11 @@ class SearchViewController: UIViewController {
         navigationController?.navigationBar.tintColor = Colors.navBarTintColor.value
         navigationItem.title = Strings.title
         navigationItem.backBarButtonItem = UIBarButtonItem(
-            title: "Back", style: .plain, target: nil, action: nil)
+            title: Strings.back, style: .plain, target: nil, action: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(startAnimation),
+            name: UIApplication.willEnterForegroundNotification, object: nil)
     }
 
     private func setupConstraints() {
@@ -53,24 +80,6 @@ class SearchViewController: UIViewController {
         searchView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        animationView.play()
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(startAnimation),
-            name: UIApplication.willEnterForegroundNotification, object: nil)
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        animationView.stop()
-    }
-
-    @objc private func startAnimation() {
-        animationView.play()
     }
 }
 

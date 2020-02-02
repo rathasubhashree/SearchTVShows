@@ -2,8 +2,8 @@
  Service calls and controller conforms the protocol
  */
 protocol DisplayViewDelegate: class {
-    var entries: [DisplayTVShow] { get set }
-    func showEntries()
+    var tvShows: [DisplayTVShow] { get set }
+    func displayTVShowList()
     func displayError(errorMessage: String)
     func showNoResultFound()
 }

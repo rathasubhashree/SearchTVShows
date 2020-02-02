@@ -1,13 +1,14 @@
 import UIKit
 
 class DisplayTVShowDetailsTableViewCell: UITableViewCell {
-   static let cellReuseIdentifier = "DisplayTVShowDetailsTableViewCell"
+    static let cellReuseIdentifier = "DisplayTVShowDetailsTableViewCell"
     private let containerView = UIView()
     private let tvShowImageView = UIImageView()
     private let tvShowNameLabel = UILabel()
     private let tvShowLanguageLabel = UILabel()
     private let containerStackView = UIStackView()
     private let statusLabel = UILabel()
+    private let estimatedImageViewHeight = 100
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -21,6 +22,7 @@ class DisplayTVShowDetailsTableViewCell: UITableViewCell {
 
     func update(appDetails: DisplayTVShow) {
         tvShowNameLabel.text = appDetails.show.name
+
         if let image = appDetails.show.image?.original,
             let url = URL(string: image) {
             tvShowImageView.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "imageNotFound"))
@@ -29,17 +31,17 @@ class DisplayTVShowDetailsTableViewCell: UITableViewCell {
         }
         tvShowLanguageLabel.text = appDetails.show.language
 
-        if let status = appDetails.show.status {
-            statusLabel.text = status
-        } else {
+        guard let status = appDetails.show.status else {
             statusLabel.text = "Not available"
+            return
         }
+        statusLabel.text = status
     }
 
     private func setupView() {
         contentView.addSubview(containerView)
         containerView.backgroundColor = Colors.white.value
-        containerView.layer.cornerRadius = 10
+        containerView.layer.cornerRadius = Margins.x1.rawValue
         containerView.layer.shadowColor = UIColor.black.cgColor
         containerView.layer.shadowOpacity = 0.5
         containerView.layer.shadowOffset = CGSize.zero
@@ -54,7 +56,7 @@ class DisplayTVShowDetailsTableViewCell: UITableViewCell {
         containerStackView.distribution = .fill
         containerStackView.axis = .vertical
         containerStackView.alignment = .fill
-        containerStackView.spacing = 8
+        containerStackView.spacing = Margins.x1.rawValue
 
         containerStackView.addArrangedSubview(tvShowNameLabel)
         tvShowNameLabel.font = Fonts.title
@@ -77,19 +79,19 @@ class DisplayTVShowDetailsTableViewCell: UITableViewCell {
 
     private func setupConstraints() {
         containerView.snp.makeConstraints { (make) in
-            make.top.bottom.equalToSuperview().inset(8)
-            make.leading.trailing.equalToSuperview().inset(16)
+            make.top.bottom.equalToSuperview().inset(Margins.x1.rawValue)
+            make.leading.trailing.equalToSuperview().inset(Margins.x2.rawValue)
         }
 
         tvShowImageView.snp.makeConstraints { (make) in
-            make.top.bottom.equalToSuperview().inset(16)
-            make.leading.equalToSuperview().offset(16)
-            make.width.height.equalTo(100)
+            make.top.bottom.equalToSuperview().inset(Margins.x1.rawValue)
+            make.leading.equalToSuperview().offset(Margins.x2.rawValue)
+            make.width.height.equalTo(estimatedImageViewHeight)
         }
 
         containerStackView.snp.makeConstraints { (make) in
-            make.top.greaterThanOrEqualToSuperview().inset(16)
-            make.leading.equalTo(tvShowImageView.snp.trailing).offset(16)
+            make.top.greaterThanOrEqualToSuperview().inset(Margins.x1.rawValue)
+            make.leading.equalTo(tvShowImageView.snp.trailing).offset(Margins.x2.rawValue)
             make.centerY.equalTo(tvShowImageView.snp.centerY)
             make.trailing.lessThanOrEqualToSuperview()
             make.bottom.lessThanOrEqualToSuperview()
@@ -98,6 +100,5 @@ class DisplayTVShowDetailsTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        backgroundColor = Colors.tableViewBackgroundColor.value
     }
 }

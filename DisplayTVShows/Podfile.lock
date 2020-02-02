@@ -8,7 +8,6 @@ PODS:
   - SwiftLint (0.38.2)
 
 DEPENDENCIES:
-  - Alamofire
   - AlamofireImage
   - lottie-ios
   - SnapKit
@@ -32,6 +31,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftLint: 8f5d2f903e1c9bcbc832fd16771e80a263ac6cbb
 
-PODFILE CHECKSUM: 47bfe03cde0d8cf27d051f34fd3b1382b352d187
+PODFILE CHECKSUM: 65ba6207b07880f6c56ebc81b7fc5d07f6138eed
 
 COCOAPODS: 1.8.4

@@ -1,41 +1,62 @@
-import Alamofire
+import Foundation
 
+/**
+ HTTPHandler is a generic helper utitlity to hanlde http request.
+ */
 struct HTTPHandler {
+    private static let requestTimeOut = 10.0
+    private static let successStatusCode = 200
+
     typealias handler = (Result<Data, String>) -> Void
 
     static func handle(
-    urlString: String,
-    completionHandler: @escaping handler) {
-        Alamofire.request(urlString).responseJSON { (response) in
-            switch response.result {
-            case .success:
-                if let responseData = response.data {
-                    completionHandler(.success(responseData))
-                } else {
-                    completionHandler(.failure(
-                        NetworkResponse.noData.rawValue))
-                }
-            case .failure(let error):
-                guard let statusCode = response.response?.statusCode else {
+        urlString: String,
+        completionHandler: @escaping handler) {
+        guard let url = URL(string: urlString) else {
+            completionHandler(.failure(NetworkResponse.outdated.rawValue))
+            return }
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = HTTPMethod.GET.rawValue
+        urlRequest.timeoutInterval = HTTPHandler.requestTimeOut
+        let dataTask = URLSession(
+            configuration: .default).dataTask(with: urlRequest) { (data, response, error) in
+                if let error = error {
                     completionHandler(.failure(error.localizedDescription))
-                    return
+                } else {
+                    if let response = response as? HTTPURLResponse {
+                        let result = self.handleNetworkResponse(response)
+                        switch result {
+                        case .success:
+                            guard let data = data else {
+                                completionHandler(.failure(
+                                    NetworkResponse.noData.rawValue))
+                                return
+                            }
+                            completionHandler(.success(data))
+                        case .failure(let networkFailure):
+                            completionHandler(.failure(networkFailure))
+                        }
+                    }
                 }
-                let errorMessage = handleErrorMessage(statusCode: statusCode)
-                completionHandler(.failure(errorMessage))
-            }
         }
+        dataTask.resume()
     }
 
-    static func handleErrorMessage(statusCode: Int) -> String {
-        switch statusCode {
-        case 400...499:
-            return NetworkResponse.authenticationError.rawValue
-        case 500...599:
-            return NetworkResponse.badRequest.rawValue
+    static private func handleNetworkResponse(
+        _ response: HTTPURLResponse) -> Result<String, String> {
+        switch response.statusCode {
+        case 200:
+            return .success("")
+        case 400...410:
+            return .failure(NetworkResponse.authenticationError.rawValue)
+        case 429:
+            return .failure(NetworkResponse.tooManyRequest.rawValue)
+        case 500:
+            return .failure(NetworkResponse.badRequest.rawValue)
         case 600:
-            return NetworkResponse.outdated.rawValue
+            return .failure(NetworkResponse.outdated.rawValue)
         default:
-            return NetworkResponse.failed.rawValue
+            return .failure(NetworkResponse.failed.rawValue)
         }
     }
 }
@@ -43,17 +64,4 @@ struct HTTPHandler {
 enum Result<Value, String> {
     case success(Value)
     case failure(String)
-}
-
-/**
-NetworkResponse contains different network response strings
- */
-enum NetworkResponse: String {
-    case success
-    case authenticationError = "Authentication failed"
-    case badRequest = "Bad request"
-    case outdated = "The url you requested is outdated."
-    case failed = "Network request failed."
-    case noData = "Response returned with no data to decode."
-    case unableToDecode = "We could not decode the response."
 }

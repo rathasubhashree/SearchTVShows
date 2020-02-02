@@ -34,7 +34,7 @@ class SearchView: UIView {
         searchTextField.delegate = self
         searchTextField.layer.borderWidth = 1
         searchTextField.layer.borderColor = UIColor.purple.cgColor
-        searchTextField.layer.cornerRadius = 10
+        searchTextField.layer.cornerRadius = Margins.x1.rawValue
         searchImageView.contentMode = .right
         searchTextField.leftView = searchImageView
         searchTextField.leftViewMode = .always
@@ -56,5 +56,6 @@ class SearchView: UIView {
 extension SearchView: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         delegate?.searchButtonTapped()
+        textField.text = ""
     }
 }

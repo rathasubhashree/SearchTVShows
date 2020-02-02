@@ -1,7 +1,6 @@
 import UIKit
 import SnapKit
 import Foundation
-import Alamofire
 import AlamofireImage
 import Lottie
 

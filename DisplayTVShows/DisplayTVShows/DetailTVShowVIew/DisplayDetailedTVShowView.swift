@@ -38,6 +38,7 @@ class DisplayDetailedTVShowView: UIView {
     private let tvShowOfficialSiteButton = UIButton()
     private let tvShowDetailLabel = UILabel()
     private let statusLabel = UILabel()
+    private let estimatedButtonHeight = 54
 
     var officialSiteURL = ""
 
@@ -47,7 +48,19 @@ class DisplayDetailedTVShowView: UIView {
         setupConstraints()
     }
 
-    func setupAttributedString(
+    func update(showDetails: ShowDetails) {
+        tvShowNameLabel.text = showDetails.name
+        updateImage(showDetails.image?.original)
+        updateLanguage(showDetails.language)
+        updateGenre(showDetails.genres)
+        updateSchedule(showDetails.schedule)
+        updateRating(showDetails.rating?.average)
+        updateStatus(showDetails.status)
+        updateOfficialSite(showDetails.officialSite)
+        updateSummary(showDetails.summary)
+    }
+
+    private func setupAttributedString(
         prefixStringValue: String, suffixStringValue: String) -> NSMutableAttributedString {
         let prefixString = NSMutableAttributedString(
             string: prefixStringValue,
@@ -61,25 +74,27 @@ class DisplayDetailedTVShowView: UIView {
         return prefixString
     }
 
-    func update(showDetails: DisplayTVShow) {
-        tvShowNameLabel.text = showDetails.show.name
-
-        if let image = showDetails.show.image?.original,
+    private func updateImage(_ image: String?) {
+        if let image = image,
             let url = URL(string: image) {
             tvShowImageView.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "imageNotFound"))
         } else {
             tvShowImageView.isHidden = true
         }
+    }
 
-        if let language = showDetails.show.language {
+    private func updateLanguage(_ language: String?) {
+        if let language = language {
             languageLabel.attributedText =  setupAttributedString(
                 prefixStringValue: Strings.language,
                 suffixStringValue: language)
         } else {
             languageLabel.isHidden = true
         }
+    }
 
-        if let genres = showDetails.show.genres,
+    private func updateGenre(_ genres: [String]?) {
+        if let genres = genres,
             !genres.isEmpty {
             genresLabel.attributedText = setupAttributedString(
                 prefixStringValue: Strings.genres,
@@ -87,8 +102,10 @@ class DisplayDetailedTVShowView: UIView {
         } else {
             genresLabel.isHidden = true
         }
+    }
 
-        if let schedule = showDetails.show.schedule,
+    private func updateSchedule(_ schedule: ScheduleData?) {
+        if let schedule = schedule,
             let time = schedule.time,
             let days = schedule.days?.joined(separator: ", "),
             !time.isEmpty || !days.isEmpty {
@@ -98,8 +115,10 @@ class DisplayDetailedTVShowView: UIView {
         } else {
             scheduleLabel.isHidden = true
         }
+    }
 
-        if let rating = showDetails.show.rating?.average {
+    private func updateRating(_ rating: Double?) {
+        if let rating = rating {
             ratingLabel.attributedText = setupAttributedString(
                 prefixStringValue: Strings.rating,
                 suffixStringValue: String(rating) + " / 10")
@@ -107,21 +126,28 @@ class DisplayDetailedTVShowView: UIView {
             ratingLabel.isHidden = true
         }
 
-        if let status = showDetails.show.status {
+    }
+
+    private func updateStatus(_ status: String?) {
+        if let status = status {
             statusLabel.attributedText = setupAttributedString(
                 prefixStringValue: Strings.status,
                 suffixStringValue: status)
         } else {
             statusLabel.isHidden = true
         }
+    }
 
-        if let officialSite = showDetails.show.officialSite {
+    private func updateOfficialSite(_ officialSite: String?) {
+        if let officialSite = officialSite {
             self.officialSiteURL = officialSite
         } else {
             tvShowOfficialSiteButton.isHidden = true
         }
+    }
 
-        if let summary = showDetails.show.summary,
+    private func updateSummary(_ summary: String?) {
+        if let summary = summary,
             summary != "" {
             let prefixString = NSMutableAttributedString(
                 string: Strings.summary,
@@ -159,7 +185,7 @@ class DisplayDetailedTVShowView: UIView {
         containerStackView.alignment = .fill
         containerStackView.distribution = .fill
         containerStackView.axis = .vertical
-        containerStackView.spacing = 8
+        containerStackView.spacing = Margins.x1.rawValue
 
         containerStackView.addArrangedSubview(tvShowImageView)
         tvShowImageView.contentMode = .scaleToFill
@@ -194,7 +220,12 @@ class DisplayDetailedTVShowView: UIView {
             Colors.white.value, for: .normal)
         tvShowOfficialSiteButton.titleLabel?.font = Fonts.title
         tvShowOfficialSiteButton.backgroundColor = Colors.tableViewBackgroundColor.value
-        tvShowOfficialSiteButton.layer.cornerRadius = 10
+        tvShowOfficialSiteButton.layer.cornerRadius = Margins.x1.rawValue
+        tvShowOfficialSiteButton.contentEdgeInsets = UIEdgeInsets.init(
+            top: 0,
+            left: Margins.x2.rawValue,
+            bottom: 0,
+            right: Margins.x2.rawValue)
         tvShowOfficialSiteButton.addTarget(
             self, action: #selector(officialSiteButtonTapped),
             for: .touchUpInside)
@@ -215,14 +246,14 @@ class DisplayDetailedTVShowView: UIView {
         }
 
         tvShowNameLabel.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(16)
-            make.leading.trailing.equalToSuperview().inset(16)
+            make.top.equalToSuperview().offset(Margins.x2.rawValue)
+            make.leading.trailing.equalToSuperview().inset(Margins.x2.rawValue)
             make.centerX.equalToSuperview()
         }
 
         containerStackView.snp.makeConstraints { (make) in
-            make.top.equalTo(tvShowNameLabel.snp.bottom).offset(16)
-            make.leading.trailing.equalToSuperview().inset(16)
+            make.top.equalTo(tvShowNameLabel.snp.bottom).offset(Margins.x2.rawValue)
+            make.leading.trailing.equalToSuperview().inset(Margins.x2.rawValue)
             make.centerX.equalToSuperview()
         }
 
@@ -232,34 +263,16 @@ class DisplayDetailedTVShowView: UIView {
         }
 
         tvShowDetailLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(containerStackView.snp.bottom).offset(16)
-            make.leading.trailing.equalToSuperview().inset(16)
+            make.top.equalTo(containerStackView.snp.bottom).offset(Margins.x2.rawValue)
+            make.leading.trailing.equalToSuperview().inset(Margins.x2.rawValue)
             make.centerX.equalToSuperview()
         }
 
         tvShowOfficialSiteButton.snp.makeConstraints { (make) in
-            make.top.equalTo(tvShowDetailLabel.snp.bottom).offset(8)
-            make.leading.trailing.equalToSuperview().inset(80)
+            make.top.equalTo(tvShowDetailLabel.snp.bottom).offset(Margins.x1.rawValue)
             make.centerX.equalToSuperview()
-            make.height.equalTo(54)
-            make.bottom.equalToSuperview().inset(16)
+            make.height.equalTo(estimatedButtonHeight)
+            make.bottom.equalToSuperview().inset(Margins.x2.rawValue)
         }
-    }
-}
-
-extension String {
-
-    func htmlAttributedString() -> NSMutableAttributedString? {
-        guard let data = self.data(
-            using: String.Encoding.utf16, allowLossyConversion: false) else { return nil }
-        guard let html = try? NSMutableAttributedString(
-            data: data,
-            options: [.documentType: NSAttributedString.DocumentType.html],
-            documentAttributes: nil) else { return nil }
-        html.addAttributes(
-            [.font: Fonts.value,
-             .foregroundColor: Colors.black.value],
-            range: NSRange(location: 0, length: html.length))
-        return html
     }
 }
